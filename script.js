@@ -1,38 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
   const emailLink = document.getElementById("email-link");
-  const popup = document.getElementById("email-popup");
-  const copyBtn = document.getElementById("copy-btn");
-  const emailText = document.getElementById("email-text");
+  const toast = document.getElementById("toast");
+  const EMAIL = "me@omarnaghiyev.com";
 
-  // Show popup on hover
-  emailLink.addEventListener("mouseenter", () => {
-    popup.classList.remove("hidden");
-    popup.classList.add("visible");
-
-    const rect = emailLink.getBoundingClientRect();
-    popup.style.left = `${rect.left + rect.width / 2}px`;
-    popup.style.top = `${rect.top + window.scrollY - 10}px`;
+  // Double-click to copy (prevent default mailto on dblclick only)
+  emailLink.addEventListener("dblclick", (e) => {
+    e.preventDefault();
+    copyToClipboard(EMAIL).then(() => showToast());
   });
 
-  // Hide popup when leaving the button area
-  emailLink.addEventListener("mouseleave", () => {
-    setTimeout(() => {
-      popup.classList.remove("visible");
-      popup.classList.add("hidden");
-    }, 300);
-  });
-
-  // Hide popup if mouse leaves popup itself
-  popup.addEventListener("mouseleave", () => {
-    popup.classList.remove("visible");
-    popup.classList.add("hidden");
-  });
-
-  // Copy email to clipboard
-  copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(emailText.textContent).then(() => {
-      copyBtn.textContent = "Copied!";
-      setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    // Fallback
+    return new Promise((resolve) => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      resolve();
     });
-  });
+  }
+
+  let toastTimer;
+  function showToast() {
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 1600);
+  }
 });

@@ -24,22 +24,10 @@ body {
   background: white;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.2rem; color: #555; margin-bottom: 1.5rem; }
 
-h2 {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-p {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-}
+p { font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem; }
 
 .links a {
   text-decoration: none;
@@ -51,53 +39,39 @@ p {
   transition: 0.2s;
 }
 
-.links a:hover {
-  background: #005f8e;
-}
+.links a:hover { background: #005f8e; }
 
-footer {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: #888;
-}
+footer { margin-top: 2rem; font-size: 0.9rem; color: #888; }
 
-/* Email popup styling */
-#email-popup {
-  position: absolute;
-  background: #ffffff;
-  color: #222;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 8px 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  transform: translate(-50%, -150%);
+/* Toast (top center) */
+#toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, -16px);
+  background: #111;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 9999;
 }
 
-#email-popup.visible {
+#toast.show {
   opacity: 1;
+  transform: translate(-50%, 0);
 }
 
-#copy-btn {
-  background: #0077b5;
-  color: white;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.8rem;
+/* (Optional) keep your previous mailto hover text if you want */
+/*
+a[href^="mailto:"]:hover::after {
+  content: " → me@omarnaghiyev.com";
+  font-size: 0.9em;
+  margin-left: 4px;
+  color: gray;
 }
-
-#copy-btn:hover {
-  background: #005f8e;
-}
-
-.hidden {
-  display: none;
-}
+*/
