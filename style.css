@@ -61,9 +61,43 @@ footer {
   color: #888;
 }
 
-a[href^="mailto:"]:hover::after {
-  content: " → me@omarnaghiyev.com";
-  font-size: 0.9em;
-  margin-left: 4px;
-  color: gray;
+/* Email popup styling */
+#email-popup {
+  position: absolute;
+  background: #ffffff;
+  color: #222;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  transform: translate(-50%, -150%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+#email-popup.visible {
+  opacity: 1;
+}
+
+#copy-btn {
+  background: #0077b5;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+#copy-btn:hover {
+  background: #005f8e;
+}
+
+.hidden {
+  display: none;
 }
