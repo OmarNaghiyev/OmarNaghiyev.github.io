@@ -1,0 +1,1 @@
+console.log("Portfolio page loaded — full version coming soon!");
