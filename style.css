@@ -20,7 +20,7 @@ body {
   max-width: 600px;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   background: white;
 }
 
@@ -59,4 +59,11 @@ footer {
   margin-top: 2rem;
   font-size: 0.9rem;
   color: #888;
+}
+
+a[href^="mailto:"]:hover::after {
+  content: " → me@omarnaghiyev.com";
+  font-size: 0.9em;
+  margin-left: 4px;
+  color: gray;
 }
