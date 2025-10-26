@@ -61,9 +61,24 @@ footer {
   color: #888;
 }
 
-a[href^="mailto:"]:hover::after {
-  content: " → me@omarnaghiyev.com";
-  font-size: 0.9em;
-  margin-left: 4px;
-  color: gray;
+/* Notification styles */
+.notification {
+  position: fixed;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  opacity: 0;
+}
+
+.notification.show {
+  top: 20px;
+  opacity: 1;
 }
